@@ -33,33 +33,15 @@ PARTS = list(OEM_BASE.keys())
 
 MAKES = sorted(
     [
-        "Audi",
-        "BMW",
-        "Chevrolet",
-        "Dodge",
-        "Ford",
-        "Honda",
-        "Hyundai",
-        "Kia",
-        "Lexus",
-        "Mazda",
-        "Mercedes-Benz",
-        "Nissan",
-        "Porsche",
-        "Subaru",
-        "Tesla",
-        "Toyota",
-        "Volkswagen",
-        "Volvo",
+        "Audi", "BMW", "Chevrolet", "Dodge", "Ford", "Honda",
+        "Hyundai", "Kia", "Lexus", "Mazda", "Mercedes-Benz",
+        "Nissan", "Porsche", "Subaru", "Tesla", "Toyota",
+        "Volkswagen", "Volvo",
     ]
 )
 RET_DAYS = {"7 Days": 7, "14 Days": 14, "30 Days": 30, "None": 0}
 WAR_DAYS = {
-    "30 Days": 30,
-    "90 Days": 90,
-    "1 Year": 365,
-    "2 Years": 730,
-    "No Warranty": 0,
+    "30 Days": 30, "90 Days": 90, "1 Year": 365, "2 Years": 730, "No Warranty": 0,
 }
 
 
@@ -296,12 +278,22 @@ async def main(page: ft.Page):
     model_dd = Dropdown("Model", ["General"], "General", expand=True)
 
     async def on_make_change(e):
+        # Only trigger when the confirm button is pressed
         models = await fetch_models(make_dd.value)
         model_dd.options = [ft.dropdown.Option(key=m, text=m) for m in models]
         model_dd.value = models[0] if models else "General"
         page.update()
 
-    make_dd = Dropdown("Make", MAKES, "Toyota", expand=True, on_change=on_make_change)
+    make_dd = Dropdown("Make", MAKES, "Toyota", expand=True)
+    
+    make_confirm_btn = ft.ElevatedButton(
+        "Confirm",
+        bgcolor=ACCENT,
+        color="white",
+        height=48,
+        on_click=on_make_change,
+    )
+
     part_dd = Dropdown("Component", PARTS, "Engine Oil & Filter")
     price_part_in = Input(
         "Part Price ($)",
@@ -318,7 +310,8 @@ async def main(page: ft.Page):
 
     car_box = ft.Column(
         [
-            ft.Row([make_dd, model_dd]),
+            ft.Row([make_dd, make_confirm_btn]),
+            model_dd,
             part_dd,
             ft.Row([price_part_in, km_in]),
         ],
@@ -573,7 +566,7 @@ async def main(page: ft.Page):
 
             data = load_data()
             
-            # Anti-duplication guard: check if identical entry was just saved within the last 2 seconds
+            # Anti-duplication guard
             if data:
                 latest = data[0]
                 if (
@@ -585,7 +578,7 @@ async def main(page: ft.Page):
                         else latest.get("shop") == entry.get("shop")
                     )
                 ):
-                    return  # Skip duplicate save request
+                    return  
 
             data.insert(0, entry)
             save_data(data)
