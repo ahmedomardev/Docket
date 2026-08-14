@@ -1,4 +1,7 @@
-# `` ![Untested](https://img.shields.io/badge/status-untested--unmaintained-red)
+![Untested](https://img.shields.io/badge/status-untested--unmaintained-red)
+![For Fun](https://img.shields.io/badge/project_type-for_fun-ff69b4)
+![Errors](https://img.shields.io/badge/errors-IDC_fork_and_fix_it-red)
+![Bugs](https://img.shields.io/badge/bugs-fix_it_yourself-orange)
 # Docket
 
 **Docket** is a simple, modern application built to help you keep track of everyday receipts, return windows, warranties, and vehicle maintenance parts in one clean ledger.
