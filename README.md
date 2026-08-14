@@ -21,4 +21,4 @@ You can download the latest Android APK directly from the [GitHub Releases](http
 
 > ⚠️ **NO BUG FIXES OR SUPPORT PROVIDED**
 > 
-> This code comes with zero guarantees and I genuinely do not care about errors, edge cases, or broken builds. It is fully open source, if it breaks or you need a feature, **fork the repo and fix it yourself**. PRs are welcome, but issue tickets will be ignored. Just consider it like a template
+> This code comes with zero guarantees and I genuinely do not care about errors, edge cases, or broken builds. It is fully open source, if it breaks or you need a feature, **fork the repo and fix it yourself**. PRs are welcome, but issue tickets will be ignored. Just consider it like a template and also I'm not responsible if a thermonuclear war happens because you did some shady stuff with it.
